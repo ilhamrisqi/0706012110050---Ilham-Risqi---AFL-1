@@ -7,45 +7,6 @@
 
 import Foundation
 
-////daftar harga tuku tuku
-//let tahuisi : Int
-//tahuisi = 3_000
-//let nasikuning : Int
-//nasikuning = 20_000
-//let nasicampur : Int
-//nasicampur = 25_000
-//let airmineral : Int
-//airmineral = 5_000
-//
-//// daftar harga gotri
-//let fruittea : Int
-//fruittea = 7_000
-//let marimasmangga : Int
-//marimasmangga = 5_000
-//let marimasjeruk : Int
-//marimasjeruk = 5_000
-//let tehjus : Int
-//tehjus = 3_000
-//
-////daftar harga madam lie
-//let nasiayamg : Int
-//nasiayamg = 25_000
-//let nasiayamb : Int
-//nasiayamb = 30_000
-//let indomie : Int
-//indomie = 10_000
-//let esteh : Int
-//esteh = 5_000
-//
-////dafatar harga kopte
-//let kopihitam : Int
-//kopihitam = 15_000
-//let kopisusu : Int
-//kopisusu = 20_000
-//let cappuchino : Int
-//cappuchino = 25_000
-//let susu : Int
-//susu = 15_000
 
 
 //array untuk menyimpan nama toko
@@ -55,6 +16,7 @@ namatoko.append("Tuku-Tuku")
 namatoko.append("Gotri")
 namatoko.append("Madam Lie")
 namatoko.append("Kopte")
+namatoko.append("Gisoe")
 
 //Array untuk menyimpan nama makanan dan harga
 var TukuTuku : [(String,Int)] = []
@@ -82,24 +44,26 @@ Kopte.append((String,Int)("Cappuchino",20000))
 Kopte.append((String,Int)("Susu",15000))
 
 
+var Gisoe : [(String,Int)] = []
+Gisoe.append((String,Int)("Americano",15000))
+Gisoe.append((String,Int)("Exspreso",20000))
+Gisoe.append((String,Int)("Jahe",10000))
+Gisoe.append((String,Int)("Susu Jahe",15000))
+
 
 
 // array untuk menyimpan
 // cafe, namamenu, harga, jumlah
-var simpantuku : [(String, String, Int, Int)] = []
-var simpangotri : [(String, String, Int, Int)] = []
-var simpanmadamlie : [(String, String, Int, Int)] = []
-var simpankopte : [(String, String, Int, Int)] = []
 
-var simpan = [0,0,0,0]
-//untuk menyimpan total
+typealias simpan = (namaToko: String, menuToko: String, harga: Int, banyak:Int)
+var cartList : [simpan] = []
+
+//untuk menyimpan totalSemua
 var totalAll = 0
 
 var userInput : String = ""
 print("Your Name? ")
 userInput = readLine()!
-
-print("User input : \(userInput)")
 
 
 
@@ -110,6 +74,7 @@ repeat{
     print("[2] Gotri")
     print("[3] Madam Lie")
     print("[4] Kopte")
+    print("[5] Gisoe")
     print("-")
     print("[S] Shopping Cart")
     print("[Q] Quit")
@@ -137,11 +102,12 @@ repeat{
                         print("Tahu Isi @\(TukuTuku[0].1)")
                         print("how many Tahu Isi do you want to buy?")
                         if let buy = readLine(), let total = Int(buy){
-//                            simpan[num-1] += total
-                            simpantuku.append((namatoko[0],(TukuTuku[0].0),(TukuTuku[0].1),total))
-                            totalAll += total * TukuTuku[0].1
-                            print("Thanks you for ordering, Total \(totalAll)")
-                            print(simpantuku)
+                            var totalsemua = 0
+                            let tryData : simpan = (namatoko[0],(TukuTuku[0].0),(TukuTuku[0].1),total)
+                            cartList.append(tryData)
+                            
+                            totalsemua += total
+                           print("Thanks you for ordering")
                             
                         }
                         
@@ -149,29 +115,29 @@ repeat{
                         print("Nasi Kuning @\(TukuTuku[1].1)")
                         print("how many Nasi Kuning do you want to buy?")
                         if let buy = readLine(), let total = Int(buy){
-//                            simpan[num-1] += total
-                            simpantuku.append((namatoko[0],(TukuTuku[1].0),(TukuTuku[1].1),total))
-                            totalAll += total * TukuTuku[1].1
-                            print("Thanks you for ordering, Total \(totalAll)")
-                            print(simpantuku)
+                            let tryData : simpan = (namatoko[0],(TukuTuku[1].0),(TukuTuku[1].1),total)
+                                cartList.append(tryData)
+                           print("Thanks you for ordering")
+//
                         }
                         
                     }else if num == "3" {
                         print("Nasi Campur @\(TukuTuku[2].1)")
                         print("how many Nasi Campur do you want to buy?")
                         if let buy = readLine(), let total = Int(buy){
-                            simpantuku.append((namatoko[0],(TukuTuku[2].0),(TukuTuku[2].1),total))
-                            totalAll += total * TukuTuku[2].1
-                            print("Thanks you for ordering, Total \(totalAll)")
+                            let tryData : simpan = (namatoko[0],(TukuTuku[2].0),(TukuTuku[2].1),total)
+                                cartList.append(tryData)
+                           print("Thanks you for ordering")
+                    
                             
                         }
                     }else if num == "4" {
                         print("Air Mineral @\(TukuTuku[3].1)")
                         print("how many Air Mineral do you want to buy?")
                         if let buy = readLine(), let total = Int(buy){
-                            simpantuku.append((namatoko[0],(TukuTuku[3].0),(TukuTuku[3].1),total))
-                            totalAll += total * TukuTuku[3].1
-                            print("Thanks you for ordering, Total \(totalAll)")
+                            let tryData : simpan = (namatoko[0],(TukuTuku[3].0),(TukuTuku[3].1),total)
+                                cartList.append(tryData)
+                           print("Thanks you for ordering")
                             
                         }
                     }else if num == "B" || num.lowercased() == "b"{
@@ -195,38 +161,39 @@ repeat{
                     if num == "1"{
                         
                         print("Fruit Tea @\(Gotri[0].1)")
-                        print("how many nasi kuning do you want to buy?")
+                        print("how many Fruit Tea do you want to buy?")
                         if let buy = readLine(), let total = Int(buy){
-                            simpangotri.append((namatoko[1],(Gotri[0].0),(Gotri[0].1),total))
-                            
-                            print("Thanks you for ordering \(totalAll)")
-                            
+                            let tryData : simpan = (namatoko[1],(Gotri[0].0),(Gotri[0].1),total)
+                                cartList.append(tryData)
+                           print("Thanks you for ordering")
+                          
                         }
                     }else if num == "2" {
                         print("Marimas Mangga @\(Gotri[1].1)")
-                        print("how many nasi kuning do you want to buy?")
+                        print("how many Marimas Mangga do you want to buy?")
                         if let buy = readLine(), let total = Int(buy){
-                            simpangotri.append((namatoko[1],(Gotri[1].0),(Gotri[1].1),total))
-                            
-                            print("Thanks you for ordering \(totalAll)")
-                            
+                            let tryData : simpan = (namatoko[1],(Gotri[1].0),(Gotri[1].1),total)
+                                cartList.append(tryData)
+                           print("Thanks you for ordering")
+                        
                         }
                     }else if num == "3" {
                         print("Marimas Jeruk @\(Gotri[2].1)")
-                        print("how many nasi kuning do you want to buy?")
+                        print("how many Marimas Jeruk do you want to buy?")
                         if let buy = readLine(), let total = Int(buy){
-                            simpangotri.append((namatoko[1],(Gotri[2].0),(Gotri[2].1),total))
-                            print("Thanks you for ordering \(totalAll)")
+                            let tryData : simpan = (namatoko[1],(Gotri[2].0),(Gotri[2].1),total)
+                                cartList.append(tryData)
+                           print("Thanks you for ordering")
                             
                         }
                     }else if num == "4" {
                         print("Teh Jus @\(Gotri[3].1)")
-                        print("how many nasi kuning do you want to buy?")
+                        print("how many Teh Jus do you want to buy?")
                         if let buy = readLine(), let total = Int(buy){
-                            simpangotri.append((namatoko[1],(Gotri[3].0),(Gotri[3].1),total))
-                            
-                            print("Thanks you for ordering \(totalAll)")
-                            
+                            let tryData : simpan = (namatoko[1],(Gotri[3].0),(Gotri[3].1),total)
+                                cartList.append(tryData)
+                           print("Thanks you for ordering")
+                           
                         }
                     }else if num == "B" || num.lowercased() == "b"{
                         break
@@ -252,38 +219,40 @@ repeat{
                     if num == "1"{
                         
                         print("Nasi Ayam Goreng \(MadamLie[0].1)")
-                        print("how many nasi kuning do you want to buy?")
+                        print("how many Nasi Ayam Goreng do you want to buy?")
                         if let buy = readLine(), let total = Int(buy){
-                            simpanmadamlie.append((namatoko[2],(MadamLie[0].0),(MadamLie[0].1),total))
-                            
-                            print("Thanks you for ordering \(totalAll)")
+                            let tryData : simpan = (namatoko[2],(MadamLie[0].0),(MadamLie[0].1),total)
+                                cartList.append(tryData)
+                           print("Thanks you for ordering")
+                           
                             
                         }
                     }else if num == "2" {
                         print("Nasi Ayam Bakar \(MadamLie[1].1)")
-                        print("how many nasi kuning do you want to buy?")
+                        print("how many Nasi Ayam Bakar do you want to buy?")
                         if let buy = readLine(), let total = Int(buy){
-                            simpanmadamlie.append((namatoko[2],(MadamLie[1].0),(MadamLie[1].1),total))
+                            let tryData : simpan = (namatoko[2],(MadamLie[1].0),(MadamLie[1].1),total)
+                                cartList.append(tryData)
+                           print("Thanks you for ordering")
                             
-                            print("Thanks you for ordering \(totalAll)")
                             
                         }
                     }else if num == "3" {
                         print("Indomie \(MadamLie[2].1)")
-                        print("how many nasi kuning do you want to buy?")
+                        print("how many Indomie do you want to buy?")
                         if let buy = readLine(), let total = Int(buy){
-                            simpanmadamlie.append((namatoko[2],(MadamLie[2].0),(MadamLie[2].1),total))
-                            
-                            print("Thanks you for ordering \(totalAll)")
+                            let tryData : simpan = (namatoko[2],(MadamLie[2].0),(MadamLie[2].1),total)
+                                cartList.append(tryData)
+                           print("Thanks you for ordering")
                             
                         }
                     }else if num == "4" {
                         print("Es teh \(MadamLie[3].1)")
-                        print("how many nasi kuning do you want to buy?")
+                        print("how many Es teh do you want to buy?")
                         if let buy = readLine(), let total = Int(buy){
-                            simpanmadamlie.append((namatoko[2],(MadamLie[3].0),(MadamLie[3].1),total))
-                            
-                            print("Thanks you for ordering \(totalAll)")
+                            let tryData : simpan = (namatoko[2],(MadamLie[3].0),(MadamLie[3].1),total)
+                                cartList.append(tryData)
+                             print("Thanks you for ordering")
                             
                         }
                     }else if num == "B" || num.lowercased() == "b"{
@@ -296,6 +265,9 @@ repeat{
         }else if option == "4"{
             
             repeat{
+                print("""
+hi
+""")
                 print("Hi, Welcome back to Kopte!  What would you like to order")
                 print("[1] Kopi Hitam")
                 print("[2] Kopi Susu")
@@ -309,36 +281,38 @@ repeat{
                     if num == "1"{
                         
                         print("Kopi Hitam \(Kopte[0].1)")
-                        print("how many nasi kuning do you want to buy?")
+                        print("how many Kopi Hitam do you want to buy?")
                         if let buy = readLine(), let total = Int(buy){
-                            simpankopte.append((namatoko[3],(Kopte[0].0),(Kopte[0].1),total))
-                            
-                            print("Thanks you for ordering \(totalAll)")
+                            let tryData : simpan = (namatoko[3],(Kopte[0].0),(Kopte[0].1),total)
+                                cartList.append(tryData)
+                            print("Thanks you for ordering")
                             
                         }
                     }else if num == "2" {
                         print("Kopi Susu \(Kopte[1].1))")
-                        print("how many nasi kuning do you want to buy?")
+                        print("how many Kopi Susu do you want to buy?")
                         if let buy = readLine(), let total = Int(buy){
-                            simpankopte.append((namatoko[3],(Kopte[1].0),(Kopte[1].1),total))
-                            
-                            print("Thanks you for ordering \(totalAll)")
+                            let tryData : simpan = (namatoko[3],(Kopte[1].0),(Kopte[1].1),total)
+                                cartList.append(tryData)
+                            print("Thanks you for ordering")
                             
                         }
                     }else if num == "3" {
                         print("Cappuchino \(Kopte[2].1))")
-                        print("how many nasi kuning do you want to buy?")
+                        print("how many Cappuchino do you want to buy?")
                         if let buy = readLine(), let total = Int(buy){
-                            simpankopte.append((namatoko[3],(Kopte[2].0),(Kopte[2].1),total))
-                            print("Thanks you for ordering \(totalAll)")
+                            let tryData : simpan = (namatoko[3],(Kopte[2].0),(Kopte[2].1),total)
+                                cartList.append(tryData)
+                            print("Thanks you for ordering")
                             
                         }
                     }else if num == "4" {
                         print("Susu \(Kopte[3].1))")
-                        print("how many nasi kuning do you want to buy?")
+                        print("how many Susu do you want to buy?")
                         if let buy = readLine(), let total = Int(buy){
-                            simpankopte.append((namatoko[3],(Kopte[3].0),(Kopte[3].1),total))
-                            print("Thanks you for ordering \(totalAll)")
+                            let tryData : simpan = (namatoko[3],(Kopte[3].0),(Kopte[3].1),total)
+                                cartList.append(tryData)
+                            print("Thanks you for ordering")
                             
                         }
                     }else if num == "B" || num.lowercased() == "b"{
@@ -348,18 +322,127 @@ repeat{
                 }
             }while true
             
+        } else if option == "5"{
+            repeat {
+            print("Hi, Welcome back to Gisoe!  What would you like to order")
+            print("[1] Americano")
+            print("[2] Exspreso")
+            print("[3] Jahe")
+            print("[4] Susu Jahe")
+            print("-")
+            print("[B]ack to Menu")
+            print("your menu choose : ")
+            
+            if let pilih = readLine(), let num = String?(pilih){
+                if num == "1"{
+                    
+                    print("Americano @\(Gisoe[0].1)")
+                    print("how many Americano do you want to buy?")
+                    if let buy = readLine(), let total = Int(buy){
+                    let tryData : simpan = (namatoko[4],(Gisoe[0].0),(Gisoe[0].1),total)
+                        cartList.append(tryData)
+                        
+                        
+                        
+                    }
+                }else if num == "2" {
+                    print("Exspreso @\(Gisoe[1].1)")
+                    print("how many Exspreso do you want to buy?")
+                    if let buy = readLine(), let total = Int(buy){
+                        let tryData : simpan = (namatoko[4],(Gisoe[1].0),(Gisoe[1].1),total)
+                        cartList.append(tryData)
+                        
+                        
+                    }
+                }else if num == "3" {
+                    print("Jahe @\(Gisoe[2].1)")
+                    print("how many Jahe do you want to buy?")
+                    if let buy = readLine(), let total = Int(buy){
+                        let tryData : simpan = (namatoko[4],(Gisoe[2].0),(Gisoe[2].1),total)
+                        cartList.append(tryData)
+                        
+                        
+                    }
+                }else if num == "4" {
+                    print("Susu Jahe @\(Gisoe[3].1)")
+                    print("how many Susu Jahe do you want to buy?")
+                    if let buy = readLine(), let total = Int(buy){
+                        let tryData : simpan = (namatoko[4],(Gisoe[3].0),(Gisoe[3].1),total)
+                        cartList.append(tryData)
+                    
+                    }
+                }else if num == "B" || num.lowercased() == "b"{
+                    break
+                }
+                
+            }
+        }while true
+            
         }else if choose == "S" || choose.lowercased() == "s"{
-            
-            if simpantuku.isEmpty{
-                print("Your Card is Empty")
-            }
-        
-            else if simpantuku.count != 0 {
-                print("Your Order from \(simpantuku[0]):")
-                print(simpantuku[1], "x" , simpantuku[3])
-            }
-            
-           
+            repeat{
+                if cartList.isEmpty{
+                    print("Your Card is Empty")
+                }
+                
+                else if cartList.count != 0 {
+                    
+                    print()
+                    var currentStoreName = ""
+                    for i in 0..<cartList.count{
+                        if currentStoreName != cartList[i].namaToko {
+                            currentStoreName = cartList[i].namaToko
+                            print("Your Order in \(currentStoreName)")
+                        }
+                        print(" - \(cartList[i].1) X  \(cartList[i].3)")
+                        
+                    }
+                    print("""
+                          Press [B] to go Back
+                          Press [P] to pay/checkout
+                          """)
+                    if let userInputBuy = readLine(), let milih = String?(userInputBuy){
+                        
+                        for item in cartList{
+                           totalAll = item.banyak * item.harga
+                            
+                        }
+                        if milih == "B" || milih.lowercased() == "b" {
+                            break
+                        }else if milih == "P" || milih.lowercased() == "p"{
+                            
+                            repeat{
+                                print("Your Total Order : \(totalAll)")
+                                print("Enter the amount of your money : ")
+                                if  let enter = readLine(){
+                                    if let enter = Int(enter){
+                                        if enter == 0{
+                                            print("Payment can't be zero")
+                                        }else if enter < 0{
+                                            print("Please enter a valid amount.")
+                                        }else if enter < totalAll{
+                                            print("Please enter a valid amount.")
+                                        }
+                                        else {
+                                            // uang cukup
+                                            print("Your total order: " + String(totalAll))
+                                            print("You pay: " + String(enter))
+                                            print("Change: " + String(enter - totalAll))
+                                            print("")
+                                            print("Enjoy your meals!")
+                                            
+                                            break
+                                        }
+                                    } else if enter.trimmingCharacters(in: .whitespaces).isEmpty{
+                                        print("Please enter your payment.")
+                                    }
+                                }
+                            }while true
+                        }
+                    }
+                    
+                }
+                
+            }while true
         }else if choose == "Q" || choose.lowercased() == "q"{
             break
         }
@@ -367,4 +450,10 @@ repeat{
         
     }
     
+    
+    
 } while true
+
+
+
+
