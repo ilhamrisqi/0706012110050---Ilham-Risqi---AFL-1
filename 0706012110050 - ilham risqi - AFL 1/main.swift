@@ -392,6 +392,7 @@ repeat {
         }while true
             
         }else if choose == "S" || choose.lowercased() == "s"{
+            var tes : Bool = true
             repeat{
                 if cartList.isEmpty{
                     print("Your Card is Empty")
@@ -417,14 +418,14 @@ repeat {
                         }
                         storeItems[item.menuToko, default: 0] += item.banyak
                     }
-
+                    
                     if !storeItems.isEmpty {
                         print("Your order in \(currentStoreName):")
                         for (productName, itemCount) in storeItems {
                             print(" - \(productName) X \(itemCount)")
                         }
                     }
-
+                    
                     print("""
                           Press [B] to go Back
                           Press [P] to pay/checkout
@@ -448,10 +449,14 @@ repeat {
                                     if let enter = Int(enter){
                                         if enter == 0{
                                             print("Payment can't be Zero")
+                                            tes = true
                                         }else if enter < 0{
                                             print("Please Enter a Valid Amount!!")
+                                            tes = true
                                         }else if enter < totalAll{
                                             print("Please Enter a Valid Amount!!")
+                                            tes = true
+                                            
                                         }
                                         else {
                                             // perbayaran
@@ -460,8 +465,9 @@ repeat {
                                             print("")
                                             print("Enjoy your meals!")
                                             cartList.removeAll()
-                                            exit(0)
-                                        
+                                            tes = false
+                                            break
+                                            
                                             
                                         }
                                     } else if enter.trimmingCharacters(in: .whitespaces).isEmpty{
@@ -472,6 +478,9 @@ repeat {
                         }
                     }
                     
+                }
+                if tes == false{
+                    break
                 }
                 
             }while true
@@ -484,6 +493,7 @@ repeat {
         }
     }
 } while true
+
 
 
 
