@@ -66,8 +66,6 @@ print("Your Name? ")
 userInput = readLine()!
 
 
-
-
 repeat {
     print("\(userInput), welcome to UC-Walk Cafeteria please choose cafeteria :")
     print("[1] Tuku - Tuku")
@@ -102,8 +100,6 @@ repeat {
                         print("Tahu Isi @\(TukuTuku[0].1)")
                         print("how many Tahu Isi do you want to buy?")
                         if let buy = readLine(), let total = Int(buy){
-//                            var totalsemua = 0
-//                            totalsemua = buy += total
                             let tryData : simpan = (namatoko[0],(TukuTuku[0].0),(TukuTuku[0].1),total)
                             cartList.append(tryData)
                             
@@ -119,7 +115,6 @@ repeat {
                             let tryData : simpan = (namatoko[0],(TukuTuku[1].0),(TukuTuku[1].1),total)
                                 cartList.append(tryData)
                            print("Thanks you for ordering")
-//
                         }
                         
                     }else if num == "3" {
@@ -149,7 +144,7 @@ repeat {
                         print()
                     }
                 }
-            } while true
+            } while (true)
         }else if option == "2" {
             
             repeat {
@@ -436,7 +431,7 @@ repeat {
                           """)
                     if let userInputBuy = readLine(), let milih = String?(userInputBuy){
                         
-                        //jumlah keseluruhan
+                        //jumlah keseluruhan item yang di beli
                         for i in 0..<cartList.count{
                             totalAll += Int(cartList[i].harga * cartList[i].banyak)
                             
@@ -465,6 +460,7 @@ repeat {
                                             print("")
                                             print("Enjoy your meals!")
                                             cartList.removeAll()
+                                            exit(1)
                                             
                                         }
                                     } else if enter.trimmingCharacters(in: .whitespaces).isEmpty{
@@ -485,12 +481,7 @@ repeat {
             print("press no 1 - 5, S and Q")
             print()
         }
-        
-        
     }
-    
-    
-    
 } while true
 
 
