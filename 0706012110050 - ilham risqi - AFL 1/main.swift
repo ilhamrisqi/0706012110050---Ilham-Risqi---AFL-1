@@ -68,7 +68,7 @@ userInput = readLine()!
 
 
 
-repeat{
+repeat {
     print("\(userInput), welcome to UC-Walk Cafeteria please choose cafeteria :")
     print("[1] Tuku - Tuku")
     print("[2] Gotri")
@@ -102,11 +102,12 @@ repeat{
                         print("Tahu Isi @\(TukuTuku[0].1)")
                         print("how many Tahu Isi do you want to buy?")
                         if let buy = readLine(), let total = Int(buy){
-                            var totalsemua = 0
+//                            var totalsemua = 0
+//                            totalsemua = buy += total
                             let tryData : simpan = (namatoko[0],(TukuTuku[0].0),(TukuTuku[0].1),total)
                             cartList.append(tryData)
                             
-                            totalsemua += total
+                            
                            print("Thanks you for ordering")
                             
                         }
@@ -142,6 +143,10 @@ repeat{
                         }
                     }else if num == "B" || num.lowercased() == "b"{
                         break
+                    }else{
+                        print()
+                        print("press no 1 - 4 & B")
+                        print()
                     }
                 }
             } while true
@@ -197,6 +202,10 @@ repeat{
                         }
                     }else if num == "B" || num.lowercased() == "b"{
                         break
+                    }else{
+                        print()
+                        print("press no 1 - 4 & B")
+                        print()
                     }
                     
                 }
@@ -257,6 +266,10 @@ repeat{
                         }
                     }else if num == "B" || num.lowercased() == "b"{
                         break
+                    }else{
+                        print()
+                        print("press no 1 - 4 & B")
+                        print()
                     }
                     
                 }
@@ -265,9 +278,6 @@ repeat{
         }else if option == "4"{
             
             repeat{
-                print("""
-hi
-""")
                 print("Hi, Welcome back to Kopte!  What would you like to order")
                 print("[1] Kopi Hitam")
                 print("[2] Kopi Susu")
@@ -289,7 +299,7 @@ hi
                             
                         }
                     }else if num == "2" {
-                        print("Kopi Susu \(Kopte[1].1))")
+                        print("Kopi Susu \(Kopte[1].1)")
                         print("how many Kopi Susu do you want to buy?")
                         if let buy = readLine(), let total = Int(buy){
                             let tryData : simpan = (namatoko[3],(Kopte[1].0),(Kopte[1].1),total)
@@ -298,7 +308,7 @@ hi
                             
                         }
                     }else if num == "3" {
-                        print("Cappuchino \(Kopte[2].1))")
+                        print("Cappuchino \(Kopte[2].1)")
                         print("how many Cappuchino do you want to buy?")
                         if let buy = readLine(), let total = Int(buy){
                             let tryData : simpan = (namatoko[3],(Kopte[2].0),(Kopte[2].1),total)
@@ -307,7 +317,7 @@ hi
                             
                         }
                     }else if num == "4" {
-                        print("Susu \(Kopte[3].1))")
+                        print("Susu \(Kopte[3].1)")
                         print("how many Susu do you want to buy?")
                         if let buy = readLine(), let total = Int(buy){
                             let tryData : simpan = (namatoko[3],(Kopte[3].0),(Kopte[3].1),total)
@@ -317,6 +327,10 @@ hi
                         }
                     }else if num == "B" || num.lowercased() == "b"{
                         break
+                    }else{
+                        print()
+                        print("press no 1 - 4 & B")
+                        print()
                     }
                     
                 }
@@ -373,6 +387,10 @@ hi
                     }
                 }else if num == "B" || num.lowercased() == "b"{
                     break
+                }else{
+                    print()
+                    print("press no 1 - 4 & B")
+                    print()
                 }
                 
             }
@@ -387,25 +405,43 @@ hi
                 else if cartList.count != 0 {
                     
                     print()
+                    
+                    // pengcekan
                     var currentStoreName = ""
-                    for i in 0..<cartList.count{
-                        if currentStoreName != cartList[i].namaToko {
-                            currentStoreName = cartList[i].namaToko
-                            print("Your Order in \(currentStoreName)")
+                    var storeItems = [String: Int]()
+                    for item in cartList {
+                        if item.namaToko != currentStoreName {
+                            if !storeItems.isEmpty {
+                                print("Your order in \(currentStoreName):")
+                                for (namamenu, jumlahitem) in storeItems {
+                                    print(" - \(namamenu) X \(jumlahitem)")
+                                }
+                                storeItems.removeAll()
+                            }
+                            currentStoreName = item.namaToko
                         }
-                        print(" - \(cartList[i].1) X  \(cartList[i].3)")
-                        
+                        storeItems[item.menuToko, default: 0] += item.banyak
                     }
+
+                    if !storeItems.isEmpty {
+                        print("Your order in \(currentStoreName):")
+                        for (productName, itemCount) in storeItems {
+                            print(" - \(productName) X \(itemCount)")
+                        }
+                    }
+
                     print("""
                           Press [B] to go Back
                           Press [P] to pay/checkout
                           """)
                     if let userInputBuy = readLine(), let milih = String?(userInputBuy){
                         
-                        for item in cartList{
-                           totalAll = item.banyak * item.harga
+                        //jumlah keseluruhan
+                        for i in 0..<cartList.count{
+                            totalAll += Int(cartList[i].harga * cartList[i].banyak)
                             
                         }
+                        
                         if milih == "B" || milih.lowercased() == "b" {
                             break
                         }else if milih == "P" || milih.lowercased() == "p"{
@@ -416,24 +452,23 @@ hi
                                 if  let enter = readLine(){
                                     if let enter = Int(enter){
                                         if enter == 0{
-                                            print("Payment can't be zero")
+                                            print("Payment can't be Zero")
                                         }else if enter < 0{
-                                            print("Please enter a valid amount.")
+                                            print("Please Enter a Valid Amount!!")
                                         }else if enter < totalAll{
-                                            print("Please enter a valid amount.")
+                                            print("Please Enter a Valid Amount!!")
                                         }
                                         else {
-                                            // uang cukup
-                                            print("Your total order: " + String(totalAll))
-                                            print("You pay: " + String(enter))
-                                            print("Change: " + String(enter - totalAll))
+                                            // perbayaran
+                                            print("Your total order: \(totalAll) " )
+                                            print("You pay: \(enter) Change:  \(enter - totalAll)" )
                                             print("")
                                             print("Enjoy your meals!")
+                                            cartList.removeAll()
                                             
-                                            break
                                         }
                                     } else if enter.trimmingCharacters(in: .whitespaces).isEmpty{
-                                        print("Please enter your payment.")
+                                        print("Please Enter Your Payment.")
                                     }
                                 }
                             }while true
@@ -445,6 +480,10 @@ hi
             }while true
         }else if choose == "Q" || choose.lowercased() == "q"{
             break
+        }else{
+            print()
+            print("press no 1 - 5, S and Q")
+            print()
         }
         
         
