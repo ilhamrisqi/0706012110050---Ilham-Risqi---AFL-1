@@ -460,7 +460,8 @@ repeat {
                                             print("")
                                             print("Enjoy your meals!")
                                             cartList.removeAll()
-                                            exit(1)
+                                            exit(0)
+                                        
                                             
                                         }
                                     } else if enter.trimmingCharacters(in: .whitespaces).isEmpty{
