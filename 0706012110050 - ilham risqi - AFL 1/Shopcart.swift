@@ -49,82 +49,87 @@ class Shopcart: fungsiKeranjang{
         if listKeranjang.isEmpty{
             print("Your cart is Empty")
             print("")
-        }
         
-        // pengecekan
-        
-        var storeKeranjang : [String: [String:Int]] = [:]
-        for simpan in listKeranjang {
-            if storeKeranjang[simpan.namatoko] == nil {
-                storeKeranjang[simpan.namatoko] = [simpan.namamenu: simpan.banyak]
-            }
-            else if storeKeranjang[simpan.namatoko]![simpan.namamenu] == nil{
-                storeKeranjang[simpan.namatoko]![simpan.namamenu] = simpan.banyak
-            }
-            else{
-                storeKeranjang[simpan.namatoko]![simpan.namamenu]! += simpan.banyak
-            }
-        }
-        
-        for (nametoko,simpans) in storeKeranjang{
-            print()
-            print("your order from \(nametoko) : ")
-            for(menu , banyak ) in simpans {
-                print("- \(menu) x \(banyak)")
-            }
-        }
-        
-        print("")
-        print("""
-                Press [B] to go Back
-                Press [P] to pay/checkout
-            """)
-        print("")
-        if let userInputBuy = readLine(), let milih = String?(userInputBuy){
-    
-            if milih == "B" || milih.lowercased() == "b"{
-                
-            }
-            else if milih == "P" || milih.lowercased() == "p"{
-                var tes = true
-                repeat{
-                    print("Your Total Order : \(totalBayar())")
-                    print("Enter the amount of your money : ")
-                        
-                    if  let enter = readLine(){
-                        if let enter = Int(enter){
-                            if enter == 0{
-                                        print("Payment can't be Zero")
-                                        tes = true
-                            }
-                            else if enter < 0{
-                                        print("Please Enter a Valid Amount!!")
-                                        tes = true
-                            }
-                            else if enter < totalBayar(){
-                                        print("Please Enter a Valid Amount!!")
-                                        tes = true
-                
-                            }
-                            else {
-                                
-                                // perbayaran
-                                print("Your total order: \(totalBayar()) " )
-                                print("You pay: \(enter) Change:  \(enter - totalBayar())" )
-                                print("")
-                                print("Enjoy your meals!")
-                                print()
-                                listKeranjang.removeAll()
-                                tes = false
-                                break
             
-                            }
-                            } else if enter.trimmingCharacters(in: .whitespaces).isEmpty{
-                                print("Please Enter Your Payment.")
-                                    }
-                                                }
-                            }while true
+        }else{
+            
+            // pengecekan
+            
+            var storeKeranjang : [String: [String:Int]] = [:]
+            for simpan in listKeranjang {
+                if storeKeranjang[simpan.namatoko] == nil {
+                    storeKeranjang[simpan.namatoko] = [simpan.namamenu: simpan.banyak]
+                }
+                else if storeKeranjang[simpan.namatoko]![simpan.namamenu] == nil{
+                    storeKeranjang[simpan.namatoko]![simpan.namamenu] = simpan.banyak
+                }
+                else{
+                    storeKeranjang[simpan.namatoko]![simpan.namamenu]! += simpan.banyak
+                }
             }
+            
+            for (nametoko,simpans) in storeKeranjang{
+                print()
+                print("your order from \(nametoko) : ")
+                for(menu , banyak ) in simpans {
+                    print("- \(menu) x \(banyak)")
+                }
+            }
+            
+            print("")
+            print("""
+                    Press [B] to go Back
+                    Press [P] to pay/checkout
+                """)
+            print("your choice : ")
+            if let userInputBuy = readLine(), let milih = String?(userInputBuy){
+        
+                if milih == "B" || milih.lowercased() == "b"{
+                    
+                }
+                else if milih == "P" || milih.lowercased() == "p"{
+                    var tes = true
+                    repeat{
+                        print("Your Total Order : \(totalBayar())")
+                        print("Enter the amount of your money : ")
+                            
+                        if  let enter = readLine(){
+                            if let enter = Int(enter){
+                                if enter == 0{
+                                            print("Payment can't be Zero")
+                                            tes = true
+                                }
+                                else if enter < 0{
+                                            print("Please Enter a Valid Amount!!")
+                                            tes = true
+                                }
+                                else if enter < totalBayar(){
+                                            print("Please Enter a Valid Amount!!")
+                                            tes = true
+                    
+                                }
+                                else {
+                                    
+                                    // perbayaran
+                                    print("Your total order: \(totalBayar()) " )
+                                    print("You pay: \(enter) Change:  \(enter - totalBayar())" )
+                                    print("")
+                                    print("Enjoy your meals!")
+                                    print()
+                                    listKeranjang.removeAll()
+                                    tes = false
+                                    break
+                
+                                }
+                                } else if enter.trimmingCharacters(in: .whitespaces).isEmpty{
+                                    print("Please Enter Your Payment.")
+                                        }
+                                                    }
+                                }while true
+                }
+        }
+        
+       
         }
     }
 }
