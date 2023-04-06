@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		143625F629AD9F990003C425 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143625F529AD9F990003C425 /* main.swift */; };
+		147EF2F129DB0DF000F17F10 /* Simpan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147EF2F029DB0DF000F17F10 /* Simpan.swift */; };
+		147EF2F329DB0E6800F17F10 /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147EF2F229DB0E6800F17F10 /* Menu.swift */; };
+		147EF2F729DD3C8100F17F10 /* Toko.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147EF2F629DD3C8100F17F10 /* Toko.swift */; };
+		147EF2F929DD428E00F17F10 /* Shopcart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147EF2F829DD428E00F17F10 /* Shopcart.swift */; };
+		147EF2FC29DDC01900F17F10 /* MenuProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147EF2FB29DDC01900F17F10 /* MenuProtocol.swift */; };
+		147EF2FF29DDCB1F00F17F10 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147EF2FE29DDCB1F00F17F10 /* View.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +31,12 @@
 /* Begin PBXFileReference section */
 		143625F229AD9F990003C425 /* 0706012110050 - ilham risqi - AFL 1 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "0706012110050 - ilham risqi - AFL 1"; sourceTree = BUILT_PRODUCTS_DIR; };
 		143625F529AD9F990003C425 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		147EF2F029DB0DF000F17F10 /* Simpan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Simpan.swift; sourceTree = "<group>"; };
+		147EF2F229DB0E6800F17F10 /* Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
+		147EF2F629DD3C8100F17F10 /* Toko.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toko.swift; sourceTree = "<group>"; };
+		147EF2F829DD428E00F17F10 /* Shopcart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shopcart.swift; sourceTree = "<group>"; };
+		147EF2FB29DDC01900F17F10 /* MenuProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuProtocol.swift; sourceTree = "<group>"; };
+		147EF2FE29DDCB1F00F17F10 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,9 +69,31 @@
 		143625F429AD9F990003C425 /* 0706012110050 - ilham risqi - AFL 1 */ = {
 			isa = PBXGroup;
 			children = (
+				147EF2FD29DDCB1000F17F10 /* View */,
+				147EF2FA29DDBA7300F17F10 /* protocol */,
 				143625F529AD9F990003C425 /* main.swift */,
+				147EF2F029DB0DF000F17F10 /* Simpan.swift */,
+				147EF2F229DB0E6800F17F10 /* Menu.swift */,
+				147EF2F629DD3C8100F17F10 /* Toko.swift */,
+				147EF2F829DD428E00F17F10 /* Shopcart.swift */,
 			);
 			path = "0706012110050 - ilham risqi - AFL 1";
+			sourceTree = "<group>";
+		};
+		147EF2FA29DDBA7300F17F10 /* protocol */ = {
+			isa = PBXGroup;
+			children = (
+				147EF2FB29DDC01900F17F10 /* MenuProtocol.swift */,
+			);
+			path = protocol;
+			sourceTree = "<group>";
+		};
+		147EF2FD29DDCB1000F17F10 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				147EF2FE29DDCB1F00F17F10 /* View.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -120,7 +154,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				147EF2F729DD3C8100F17F10 /* Toko.swift in Sources */,
 				143625F629AD9F990003C425 /* main.swift in Sources */,
+				147EF2F929DD428E00F17F10 /* Shopcart.swift in Sources */,
+				147EF2F129DB0DF000F17F10 /* Simpan.swift in Sources */,
+				147EF2FC29DDC01900F17F10 /* MenuProtocol.swift in Sources */,
+				147EF2FF29DDCB1F00F17F10 /* View.swift in Sources */,
+				147EF2F329DB0E6800F17F10 /* Menu.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
